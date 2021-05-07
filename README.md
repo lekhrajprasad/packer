@@ -5,5 +5,8 @@ sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinu
 sudo yum -y install packer
 rm -f /usr/sbin/packer
 
-#adding key and secret of aws
+# Adding key and secret of aws
 aws configure
+
+# To run packer
+packer build myamipacker.json
