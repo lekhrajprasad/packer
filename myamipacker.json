@@ -1,0 +1,27 @@
+{
+	"variables": {
+		"region": "us-east-1",
+		"base_image_id": "ami-0d5eff06f840b45e9",
+		"final_image_name": "image_created_by_packer"
+	},
+	"builders": [
+		{
+			"type": "amazon-ebs",
+			"profile": "default",
+			"region": "{{user `region`}}",
+			"source_ami": "{{user `base_image_id`}}",
+			"instance_type": "t2.micro",
+			"ssh_username": "ec2-user",
+			"ami_name": "{{user `final_image_name`}}"
+		}
+	],
+	"provisioners": [
+		{
+			"type": "shell",
+			"script": "./myshellscript.sh",
+			"execute_command": "sudo -E -S sh '{{.Path}}'"
+		}
+	]
+
+
+}
